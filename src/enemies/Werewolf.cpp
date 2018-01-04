@@ -11,13 +11,13 @@ void Werewolf::Update()
 	
 	if(isWerewolf)
 	{
-		if(isTransforming)
+		if(isTransforming) //lobisomem se transformando
 		{
-			if(nextFrame == 27)
+			if(nextFrame == 27)//fim da transformação
 			{
 				isTransforming = false;
 				isWerewolf = false;
-				frameStart = 0;
+				frameStart = 0;//muda animação pra animação humana
 				frameEnd = 3;
 				counter = 0;
 				inverseSpeed = humanAnimSpeed;
@@ -27,7 +27,7 @@ void Werewolf::Update()
 		}
 		else
 		{
-			if(isAttacking)
+			if(isAttacking) //lobisomem atacando
 			{
 				if((!hasHit) && (frame >= 19))
 				{
@@ -35,16 +35,16 @@ void Werewolf::Update()
 					int n = 0;
 					switch(orientation)
 					{
-						case 0:
+						case 0: //se atacando pra cima
 							n = game.entitiesManager.SearchArea(x, y - 20, 20, 20, entities, 5);
 							break;
-						case 1:
+						case 1: // se atacando pra baixo
 							n = game.entitiesManager.SearchArea(x, y + height, 20, 10, entities, 5);
 							break;
-						case 2:
+						case 2: //se atacando pra esquerda
 							n = game.entitiesManager.SearchArea(x - 10, y, 10, 20, entities, 5);
 							break;
-						case 3:
+						case 3: //se atacando pra direita
 							n = game.entitiesManager.SearchArea(x + width, y, 10, 20, entities, 5);
 							break;
 					}
@@ -72,15 +72,15 @@ void Werewolf::Update()
 					}
 				}
 				
-				if(nextFrame == 21)
+				if(nextFrame == 21)//fim do ataque
 				{
 					isAttacking = false;
-					frameStart = 13;
+					frameStart = 13;//volta à animação de lobisomem andando
 					frameEnd = 16;
 					inverseSpeed = werewolfAnimSpeed;
 				}
 			}
-			else if(isPreparing)
+			else if(isPreparing) // lobisomem preparando ataquee
 			{
 				attackCountdown--;
 				if(attackCountdown <= 0)
